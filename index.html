@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mira ❤️ - Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0, #ffdde1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            max-width: 1000px;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.92);
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .left-panel {
+            flex: 1;
+            background: linear-gradient(135deg, #e91e63, #ff6b93);
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .photo-container {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ffafbd, #ffc3a0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+        }
+        
+        .left-panel h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .left-panel p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 300px;
+            line-height: 1.6;
+        }
+        
+        .hint {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 0.9rem;
+            max-width: 250px;
+        }
+        
+        .right-panel {
+            flex: 1;
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .login-form {
+            width: 100%;
+        }
+        
+        .form-title {
+            color: #e91e63;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .form-subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .input-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .input-group input:focus {
+            border-color: #e91e63;
+            box-shadow: 0 0 0 3px rgba(233, 30, 99, 0.1);
+            outline: none;
+        }
+        
+        .input-group i {
+            position: absolute;
+            right: 20px;
+            top: 45px;
+            color: #999;
+        }
+        
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 0.9rem;
+        }
+        
+        .remember {
+            display: flex;
+            align-items: center;
+        }
+        
+        .remember input {
+            margin-right: 8px;
+        }
+        
+        .forgot {
+            color: #e91e63;
+            text-decoration: none;
+        }
+        
+        .forgot:hover {
+            text-decoration: underline;
+        }
+        
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #e91e63, #ff6b93);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+        }
+        
+        .register-link a {
+            color: #e91e63;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .register-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .floating-heart {
+            position: absolute;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.5rem;
+            animation: float 10s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .heart-decoration {
+            position: absolute;
+            color: rgba(233, 30, 99, 0.1);
+            font-size: 8rem;
+            z-index: 0;
+        }
+        
+        .heart-1 {
+            top: 10%;
+            left: 10%;
+        }
+        
+        .heart-2 {
+            bottom: 10%;
+            right: 10%;
+        }
+        
+        .message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+        }
+        
+        .message.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .message-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .message-content h3 {
+            color: #e91e63;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .message-content p {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .message-btn {
+            padding: 10px 20px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        .error-message {
+            color: #e91e63;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                max-width: 500px;
+            }
+            
+            .left-panel {
+                padding: 30px;
+            }
+            
+            .right-panel {
+                padding: 30px;
+            }
+            
+            .photo-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .left-panel h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="heart-decoration heart-1">❤</div>
+        <div class="heart-decoration heart-2">❤</div>
+        
+        <div class="left-panel">
+            <div class="floating-hearts" id="hearts-container"></div>
+            <div class="photo-container">
+                <div class= "">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+            <h1>Palmira ❤️</h1>
+            <p>Para uma pessoa especial.</p>
+            <div class="hint">
+            </div>
+        </div>
+        
+        <div class="right-panel">
+            <form class="login-form" id="loginForm">
+                <h2 class="form-title">Acesse Sua Mensagem</h2>
+                <p class="form-subtitle">Digite suas informações para ver a mensagem especial</p>
+                
+                <div class="input-group">
+                    <label for="name">Seu Nome</label>
+                    <input type="text" id="name" placeholder="Digite seu nome" required>
+                    <i class="fas fa-user"></i>
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Senha</label>
+                    <input type="password" id="password" placeholder="Digite sua senha" required>
+                    <i class="fas fa-lock"></i>
+                </div>
+                
+                <div class="error-message" id="errorMessage"></div>
+                
+                <div class="remember-forgot">
+                    <div class="remember">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Lembrar-me</label>
+                    </div>
+                    <a href="#" class="forgot" id="hintBtn">Precisa de uma dica?</a>
+                </div>
+                
+                <button type="submit" class="btn">Ver Mensagem Especial</button>
+                
+                <div class="register-link">
+                    <p>Não tem uma conta? <a href="#">Solicitar acesso</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="message" id="successMessage">
+        <div class="message-content">
+            <h3>Credenciais Corretas! ❤️</h3>
+            <p>Login realizado com sucesso. Você será redirecionado para a mensagem especial em alguns segundos...</p>
+            <button class="message-btn" id="redirectBtn">Ir Agora</button>
+        </div>
+    </div>
+
+    <div class="message" id="hintMessage">
+        <div class="message-content">
+            <h3>Uma Dica 💡</h3>
+            <p>O nome que você deve usar é <strong>Palmira</strong> e a senha é <strong>Sweet</strong>.</p>
+            <p>Lembre-se de como esses detalhes são especiais para nós!</p>
+            <button class="message-btn" id="closeHintBtn">Entendi</button>
+        </div>
+    </div>
+
+    <script>
+        // Criar corações flutuantes
+        const heartsContainer = document.getElementById('hearts-container');
+        const heartsCount = 15;
+        
+        for (let i = 0; i < heartsCount; i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 10 + 8) + 's';
+            heart.style.animationDelay = Math.random() * 5 + 's';
+            heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+            heartsContainer.appendChild(heart);
+        }
+        
+        // Elementos do DOM
+        const loginForm = document.getElementById('loginForm');
+        const errorMessage = document.getElementById('errorMessage');
+        const successMessage = document.getElementById('successMessage');
+        const hintMessage = document.getElementById('hintMessage');
+        const hintBtn = document.getElementById('hintBtn');
+        const closeHintBtn = document.getElementById('closeHintBtn');
+        const redirectBtn = document.getElementById('redirectBtn');
+        
+        // Validação do formulário
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const password = document.getElementById('password').value;
+            
+            // Limpar mensagem de erro anterior
+            errorMessage.textContent = '';
+            
+            if(name === 'Palmira' && password === 'Sweet') {
+                // Credenciais corretas
+                successMessage.classList.add('active');
+                
+                // Redirecionamento automático após 3 segundos
+                setTimeout(function() {
+                    window.location.href = 'MyCV.html';
+                }, 3000);
+            } else {
+                // Credenciais incorretas
+                errorMessage.textContent = 'Credenciais incorretas. Tente novamente.';
+                
+                // Efeito visual de erro
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.style.borderColor = '#e91e63';
+                    setTimeout(() => {
+                        input.style.borderColor = '#e0e0e0';
+                    }, 2000);
+                });
+            }
+        });
+        
+        // Mostrar dica
+        hintBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            hintMessage.classList.add('active');
+        });
+        
+        // Fechar dica
+        closeHintBtn.addEventListener('click', function() {
+            hintMessage.classList.remove('active');
+        });
+        
+        // Redirecionamento imediato
+        redirectBtn.addEventListener('click', function() {
+            window.location.href = 'MyCV.html';
+        });
+        
+        // Fechar mensagens clicando fora
+        [successMessage, hintMessage].forEach(message => {
+            message.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
