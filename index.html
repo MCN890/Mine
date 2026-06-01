@@ -330,69 +330,106 @@
       </div>
     </div>
   </section>
-
 <script>
 // céu estrelado
-for(let i=0;i<180;i++){
-  const star=document.createElement('div');
-  star.classList.add('star');
-  star.style.left=Math.random()*100+'vw';
-  star.style.top=Math.random()*100+'vh';
-  star.style.animationDuration=(Math.random()*4+2)+'s';
-  document.querySelector('.stars').appendChild(star);
+for (let i = 0; i < 180; i++) {
+    const star = document.createElement("div");
+    star.classList.add("star");
+    star.style.left = Math.random() * 100 + "vw";
+    star.style.top = Math.random() * 100 + "vh";
+    star.style.animationDuration = (Math.random() * 4 + 2) + "s";
+    document.querySelector(".stars").appendChild(star);
 }
 
-function typeWriter(){
-  const text=`Às vezes, a vida surpreende-nos das formas mais bonitas… 🌍✨\n\nE, mesmo em pouco tempo, aparecem pessoas capazes de deixar uma marca especial.\n\nConhecer-te naquela sexta-feira foi algo inesperado, mas muito bonito 💫.\nEm tão pouco tempo, mostraste carinho, paciência e cuidado 🫶🏽\n\nGosto da forma como me tratas 💖\nDa leveza das nossas conversas 😌\nDo teu jeito calmo 🌙✨\nE da forma como me fazes sentir confortável 🤍\n\nObrigado por seres tão incrível 🌷☀️💕`;
+// efeito máquina de escrever
+function typeWriter() {
+    const text = `
+Às vezes, a vida surpreende-nos das formas mais bonitas… 🌍✨
 
-  const target=document.querySelector('.message');
-  target.innerHTML='';
-  let i=0;
+E, mesmo em pouco tempo, aparecem pessoas capazes de deixar uma marca especial.
 
-  function typing(){
-    if(i<text.length){
-      target.innerHTML += text.charAt(i)==='\n' ? '<br>' : text.charAt(i);
-      i++;
-      setTimeout(typing,35);
+Conhecer-te naquela sexta-feira foi algo inesperado, mas muito bonito 💫.
+
+Em tão pouco tempo, mostraste carinho, paciência e cuidado 🫶🏽
+
+Gosto da forma como me tratas 💖
+Da leveza das nossas conversas 😌
+Do teu jeito calmo 🌙✨
+E da forma como me fazes sentir confortável 🤍
+
+Obrigado por seres tão incrível 🌷
+Continua com esse teu jeito doce ☀️💕
+`;
+
+    const target = document.querySelector(".message");
+    target.innerHTML = "";
+
+    let i = 0;
+
+    function typing() {
+        if (i < text.length) {
+            target.innerHTML +=
+                text.charAt(i) === "\n"
+                    ? "<br>"
+                    : text.charAt(i);
+
+            i++;
+            setTimeout(typing, 35);
+        }
     }
-  }
-  typing();
+
+    typing();
 }
 
+// show surpresa
 function showSurprise() {
-  document.getElementById('letterModal').style.display='flex';
+    const show = document.getElementById("showScreen");
+    const intro = document.getElementById("intro");
+    const message = document.getElementById("messagePage");
+    const letterModal = document.getElementById("letterModal");
+    const flap = document.getElementById("flap");
+    const letter = document.getElementById("letter");
 
-  document.getElementById('letter').onclick=()=>{
-    document.getElementById('flap').style.transform='rotateX(180deg)';
+    letterModal.style.display = "flex";
 
-    setTimeout(()=>{
-      document.getElementById('letterModal').style.display='none';
-  const show = document.getElementById('showScreen');
-  const intro = document.getElementById('intro');
-  const message = document.getElementById('messagePage');
+    letter.onclick = () => {
+        flap.style.transform = "rotateX(180deg)";
 
-  show.style.display = 'flex';
+        setTimeout(() => {
+            letterModal.style.display = "none";
 
-  const emojis = ['💖','✨','🌸','💙','💕','🥹','🌷'];
+            show.style.display = "flex";
 
-  for(let i = 0; i < 50; i++) {
-    const emoji = document.createElement('div');
-    emoji.classList.add('emoji');
-    emoji.innerText = emojis[Math.floor(Math.random()*emojis.length)];
-    emoji.style.left = Math.random() * 100 + 'vw';
-    emoji.style.animationDuration = (Math.random() * 3 + 2) + 's';
-    emoji.style.fontSize = (Math.random() * 25 + 20) + 'px';
-    show.appendChild(emoji);
-  }
+            const emojis = ["💖","✨","🌸","💙","💕","🥹","🌷"];
 
-  setTimeout(() => {
-    intro.style.display = 'none';
-    show.style.display = 'none';
-    message.style.display = 'flex';
-    typeWriter();
-  }, 4500);
+            for (let i = 0; i < 50; i++) {
+                const emoji = document.createElement("div");
+
+                emoji.classList.add("emoji");
+                emoji.innerText =
+                    emojis[Math.floor(Math.random() * emojis.length)];
+
+                emoji.style.left = Math.random() * 100 + "vw";
+                emoji.style.animationDuration =
+                    (Math.random() * 3 + 2) + "s";
+
+                emoji.style.fontSize =
+                    (Math.random() * 25 + 20) + "px";
+
+                show.appendChild(emoji);
+            }
+
+            setTimeout(() => {
+                intro.style.display = "none";
+                show.style.display = "none";
+                message.style.display = "flex";
+
+                typeWriter();
+            }, 4500);
+
+        }, 1200);
+    };
 }
 </script>
-
 </body>
 </html>
