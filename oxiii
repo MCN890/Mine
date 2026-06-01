@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Para a Minha Princesa 👑💖</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    overflow-y:auto;
+    color:white;
+    background:
+    radial-gradient(circle at top,
+    #ff8ac7 0%,
+    #7c3aed 45%,
+    #0f172a 100%);
+}
+
+/* ESTRELAS */
+#stars{
+    position:fixed;
+    inset:0;
+    z-index:-3;
+}
+
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle linear infinite;
+}
+
+@keyframes twinkle{
+    0%,100%{opacity:.2;}
+    50%{opacity:1;}
+}
+
+/* CORAÇÕES */
+.heart{
+    position:fixed;
+    bottom:-30px;
+    z-index:-2;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:
+        translateY(0)
+        rotate(0deg);
+        opacity:.8;
+    }
+
+    to{
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* INTRO */
+#intro{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.card{
+    width:100%;
+    max-width:760px;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:40px;
+
+    padding:60px 40px;
+
+    box-shadow:
+    0 0 60px rgba(255,105,180,.18);
+}
+
+.crown{
+    font-size:3rem;
+    margin-bottom:10px;
+    animation:glow 2s infinite;
+}
+
+@keyframes glow{
+    0%,100%{
+        text-shadow:
+        0 0 10px #ffd700,
+        0 0 20px #ffd700;
+    }
+
+    50%{
+        text-shadow:
+        0 0 25px #fff,
+        0 0 50px #ffd700;
+    }
+}
+
+h1{
+    font-size:3.2rem;
+    line-height:1.2;
+    margin-bottom:18px;
+}
+
+.subtitle{
+    font-size:1.15rem;
+    opacity:.9;
+    margin-bottom:35px;
+}
+
+button{
+    border:none;
+    border-radius:999px;
+    padding:18px 38px;
+    cursor:pointer;
+    color:white;
+    font-size:1rem;
+    font-weight:600;
+
+    background:
+    linear-gradient(
+    45deg,
+    #ec4899,
+    #8b5cf6
+    );
+
+    transition:.35s;
+
+    box-shadow:
+    0 0 30px
+    rgba(255,105,180,.25);
+}
+
+button:hover{
+    transform:scale(1.07);
+}
+
+/* CARTINHA */
+#letterModal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.88);
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.envelope{
+    width:320px;
+    height:220px;
+    position:relative;
+    cursor:pointer;
+}
+
+.envelope-body{
+    position:absolute;
+    inset:0;
+    background:#ffe4ef;
+    border-radius:14px;
+}
+
+.flap{
+    position:absolute;
+    width:100%;
+    height:120px;
+    background:#ffb6d5;
+
+    clip-path:
+    polygon(
+    0 0,
+    100% 0,
+    50% 100%
+    );
+
+    transform-origin:top;
+    transition:1s;
+}
+
+.letter-text{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    text-align:center;
+    color:#be185d;
+    font-weight:700;
+}
+
+/* SHOW */
+#show{
+    position:fixed;
+    inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    background:rgba(0,0,0,.95);
+    z-index:9998;
+}
+
+.emoji{
+    position:absolute;
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+    from{
+        transform:translateY(100vh);
+    }
+
+    to{
+        transform:translateY(-130vh);
+    }
+}
+
+/* MENSAGEM */
+#message{
+    display:none;
+    min-height:100vh;
+    justify-content:flex-start;
+    align-items:center;
+    padding:40px 20px 80px;
+}
+
+.message-card{
+    width:100%;
+    max-width:900px;
+    margin:auto;
+
+    background:
+    rgba(255,255,255,.08);
+
+    border:
+    1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(18px);
+
+    border-radius:40px;
+    padding:50px;
+    line-height:2;
+}
+
+.message-card h2{
+    text-align:center;
+    font-size:2.3rem;
+    margin-bottom:25px;
+}
+
+#typed{
+    white-space:pre-wrap;
+    font-size:1.08rem;
+}
+
+.music{
+    text-align:center;
+    margin-top:30px;
+}
+
+.music a{
+    text-decoration:none;
+}
+
+.quote{
+    margin-top:35px;
+    text-align:center;
+    font-style:italic;
+    opacity:.9;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+    h1{
+        font-size:2.2rem;
+    }
+
+    .card,
+    .message-card{
+        padding:30px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="stars"></div>
+
+<section id="intro">
+    <div class="card">
+
+        <div class="crown">
+            👑
+        </div>
+
+        <h1>
+            Para a Minha Princesa 💖
+        </h1>
+
+        <p class="subtitle">
+            Há pessoas que chegam...
+            e mudam a forma como os dias parecem ✨
+        </p>
+
+        <button onclick="showSurprise()">
+            💌 Abrir Cartinha
+        </button>
+
+    </div>
+</section>
+
+<div id="letterModal">
+
+<div class="envelope"
+onclick="openLetter()">
+
+<div class="envelope-body"></div>
+
+<div class="flap"
+id="flap"></div>
+
+<div class="letter-text">
+💌 Clica para abrir 💌
+</div>
+
+</div>
+</div>
+
+<div id="show">
+<h2>
+✨ Uma surpresa para
+a minha princesa 💖
+</h2>
+</div>
+
+<section id="message">
+
+<div class="message-card">
+
+<h2>
+👑 Para a Minha Princesa 💖
+</h2>
+
+<div id="typed"></div>
+
+<div class="music">
+<a target="_blank"
+href="https://www.youtube.com/watch?v=LjhCEhWiKXk">
+
+<button>
+🎶 Just The Way You Are
+</button>
+
+</a>
+</div>
+
+<div class="quote">
+Feliz nosso dia
+minha princesaaaaaaaaaaaaaaaaaaaa 💖👑✨
+</div>
+
+</div>
+</section>
+
+<script>
+
+// ESTRELAS
+for(let i=0;i<180;i++){
+
+const star=
+document.createElement('div');
+
+star.className='star';
+
+star.style.left=
+Math.random()*100+'vw';
+
+star.style.top=
+Math.random()*100+'vh';
+
+star.style.animationDuration=
+(Math.random()*4+2)+'s';
+
+document.getElementById(
+'stars'
+).appendChild(star);
+}
+
+// CORAÇÕES
+setInterval(()=>{
+
+const heart=
+document.createElement('div');
+
+heart.className='heart';
+
+heart.innerHTML='💖';
+
+heart.style.left=
+Math.random()*100+'vw';
+
+heart.style.fontSize=
+(Math.random()*25+15)+'px';
+
+heart.style.animationDuration=
+(Math.random()*5+5)+'s';
+
+document.body.appendChild(
+heart
+);
+
+setTimeout(()=>{
+heart.remove();
+},7000);
+
+},450);
+
+// ABRIR CARTINHA
+function showSurprise(){
+
+document.getElementById(
+'letterModal'
+).style.display='flex';
+
+}
+
+// ABRIR ENVELOPE
+function openLetter(){
+
+document.getElementById(
+'flap'
+).style.transform=
+'rotateX(180deg)';
+
+setTimeout(()=>{
+
+document.getElementById(
+'letterModal'
+).style.display='none';
+
+startShow();
+
+},1000);
+}
+
+// MINI SHOW
+function startShow(){
+
+const show=
+document.getElementById(
+'show'
+);
+
+show.style.display='flex';
+
+const emojis=[
+'💖','✨','🌸',
+'💕','🥹','💘'
+];
+
+for(let i=0;i<50;i++){
+
+const emoji=
+document.createElement(
+'div'
+);
+
+emoji.className='emoji';
+
+emoji.innerHTML=
+emojis[
+Math.floor(
+Math.random()*
+emojis.length
+)
+];
+
+emoji.style.left=
+Math.random()*100+'vw';
+
+emoji.style.fontSize=
+(Math.random()*35+20)+'px';
+
+emoji.style.animationDuration=
+(Math.random()*3+2)+'s';
+
+show.appendChild(
+emoji
+);
+}
+
+setTimeout(()=>{
+
+show.style.display='none';
+
+document.getElementById(
+'intro'
+).style.display='none';
+
+document.getElementById(
+'message'
+).style.display='flex';
+
+typeWriter();
+
+},4500);
+}
+
+// TYPEWRITER
+function typeWriter(){
+
+const text=
+`Às vezes, a vida tem um jeito bonito de aproximar certas pessoas... 🌙✨
+
+E, no meio de tantos dias normais, aparecem pessoas capazes de mudar a forma como tudo parece 💖
+
+Tu foste uma dessas pessoas.
+
+Não sei exatamente quando comecei a gostar tanto da tua presença... talvez tenha sido no teu jeito 😌
+
+Talvez na tua forma de falar 🥹
+
+Ou talvez nessa energia bonita que carregas 🌸
+
+Mas existe algo em ti que me faz parar um pouco...
+observar mais...
+e sorrir sem motivo às vezes 💫
+
+Gosto da tua calma 🌙
+do teu jeito 🌷
+e da forma como consegues ser especial sem esforço 💖
+
+Talvez eu não saiba explicar tudo da forma perfeita...
+
+Mas sei reconhecer quando alguém começa a significar mais do que o normal 🤍
+
+E gosto da ideia de continuar a conhecer cada detalhe teu 😌
+
+Porque, sinceramente...
+
+tu tens um lugar diferente aqui 💖👑`;
+
+const target=
+document.getElementById(
+'typed'
+);
+
+let i=0;
+
+function write(){
+
+if(i<text.length){
+
+target.innerHTML +=
+text.charAt(i)==='\n'
+? '<br>'
+: text.charAt(i);
+
+i++;
+
+setTimeout(
+write,
+40
+);
+
+}
+}
+
+write();
+}
+</script>
+
+</body>
+</html>
